@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_training"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="jrgroup.braintest.TrainingActivity">
+
+    <ImageButton
+        android:id="@+id/btnG1"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="11dp"
+        app:srcCompat="@drawable/ref"
+        android:layout_below="@+id/imageView3"
+        android:layout_alignLeft="@+id/imageView3"
+        android:layout_alignStart="@+id/imageView3" />
+
+    <ImageButton
+        android:id="@+id/btnG2"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignTop="@+id/btnG1"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
+        android:layout_toEndOf="@+id/btnG1"
+        android:layout_toRightOf="@+id/btnG1"
+        app:srcCompat="@drawable/game1" />
+
+    <ImageButton
+        android:id="@+id/btnG3"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignLeft="@+id/btnG1"
+        android:layout_alignStart="@+id/btnG1"
+        android:layout_below="@+id/btnG1"
+        android:layout_marginTop="13dp"
+        app:srcCompat="@drawable/game3" />
+
+    <ImageButton
+        android:id="@+id/btnG4"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignLeft="@+id/btnG2"
+        android:layout_alignStart="@+id/btnG2"
+        android:layout_alignTop="@+id/btnG3"
+        app:srcCompat="@drawable/game4" />
+
+    <ImageButton
+        android:id="@+id/btnBackTraining"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        app:srcCompat="@drawable/backicon"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/btnG3"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/Logo"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/trainning" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/Logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        app:srcCompat="@drawable/chooose" />
+</RelativeLayout>

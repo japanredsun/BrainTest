@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">BrainTest</string>
+    <string name="txtHienThi">150 150 nha</string>
+    <string name="tvn">tvn</string>
+    <string name="txtDiem">0</string>
+    <string name="thongbao1">YOU LOSE</string>
+    <string name="thongbaotraloi1">Quit!</string>
+    <string name="thongbaotraloi2">Play again!</string>
+    <string name="begining1">Choose your right answer in limited time. Good Luck!</string>
+    <string name="begin_btn">Begin</string>
+    <string name="title_activity_quick_math">QuickMathActivity</string>
+    <string name="G2btUP">G2btUP</string>
+</resources>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="jrgroup.braintest.QuickMathActivity"
+    android:background="@drawable/background">
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/pauseicon"
+        android:layout_below="@+id/progressBarG4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ProgressBar
+        android:id="@+id/progressBarG4"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:minHeight="30dip"
+        android:progressDrawable="@drawable/myprogressbar" />
+
+    <Button
+        android:id="@+id/G4btUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progressBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="180dp"
+        android:text="Button"
+        android:background="@color/colorFBtG4"
+        android:textColor="@color/colorBtG4"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/G4btRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="250dp"
+        android:text="Button"
+        android:background="@color/colorFBtG4"
+        android:textColor="@color/colorBtG4"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/G4btLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="250dp"
+        android:text="Button"
+        android:background="@color/colorFBtG4"
+        android:textColor="@color/colorBtG4"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/G4btDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="320dp"
+        android:text="Button"
+        android:background="@color/colorFBtG4"
+        android:textColor="@color/colorBtG4"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="22dp"
+        android:layout_toEndOf="@+id/G4btDown"
+        android:layout_toRightOf="@+id/G4btDown"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/txtDiemG4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progressBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="63dp"
+        android:text="@string/txtDiem"
+        android:textSize="36sp" />
+</RelativeLayout>
