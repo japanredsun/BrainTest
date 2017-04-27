@@ -4,95 +4,153 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="jrgroup.braintest.VisionActivity">
+    tools:context="jrgroup.braintest.VisionActivity"
+    android:background="@drawable/background">
 
     <RelativeLayout
         android:id="@+id/layout2"
         android:layout_width="400dp"
-        android:layout_height="350dp"
-        android:layout_above="@+id/button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="33dp">
+        android:layout_height="400dp"
+        android:background="@drawable/bgroad"
+        android:layout_below="@+id/progressBarG3"
+        android:layout_centerHorizontal="true">
 
         <ImageView
             android:id="@+id/imgso4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@mipmap/ic_launcher"
+            app:srcCompat="@drawable/car"
             android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/imgso5"
-            android:layout_toStartOf="@+id/imgso5"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp" />
+            android:layout_marginRight="115dp"
+            android:layout_alignParentRight="true"  />
 
         <ImageView
             android:id="@+id/imgso5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="46dp"
-            android:layout_marginRight="46dp"
-            app:srcCompat="@mipmap/ic_launcher"
+            android:layout_marginRight="73dp"
+            app:srcCompat="@drawable/car"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentRight="true" />
 
         <ImageView
             android:id="@+id/imgso3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/imgso4"
-            android:layout_marginEnd="11dp"
-            android:layout_marginRight="11dp"
-            android:layout_toLeftOf="@+id/imgso4"
-            android:layout_toStartOf="@+id/imgso4"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@drawable/car"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
         <ImageView
             android:id="@+id/imgso2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/imgso1"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp"
-            android:layout_toLeftOf="@+id/imgso3"
-            android:layout_toStartOf="@+id/imgso3"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@drawable/car"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="199dp"
+            android:layout_alignParentRight="true" />
 
         <ImageView
             android:id="@+id/imgso1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@mipmap/ic_launcher"
+            app:srcCompat="@drawable/car"
             android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/imgso2"
-            android:layout_toStartOf="@+id/imgso2"
-            android:layout_marginRight="13dp"
-            android:layout_marginEnd="13dp" />
+            android:layout_marginRight="241dp"
+            android:layout_alignParentRight="true" />
     </RelativeLayout>
 
 
-
-    <Button
+    <ImageButton
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="31dp" />
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@+id/G3imgMB5"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/G3btReset"
+        app:srcCompat="@drawable/retry" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:text="TextView"
+        android:visibility="invisible" />
+
+    <ImageButton
+        android:id="@+id/G3imgMB1"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        app:srcCompat="@drawable/number1"
         android:layout_below="@+id/layout2"
-        android:layout_marginLeft="34dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="14dp"
-        android:text="TextView" />
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_marginLeft="53dp"
+        android:layout_marginStart="53dp" />
+
+    <ImageButton
+        android:id="@+id/G3imgMB2"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        app:srcCompat="@drawable/number2"
+        android:layout_below="@+id/layout2"
+        android:layout_toRightOf="@+id/G3imgMB1"
+        android:layout_toEndOf="@+id/G3imgMB1" />
+
+    <ImageButton
+        android:id="@+id/G3imgMB3"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        app:srcCompat="@drawable/number3"
+        android:layout_below="@+id/layout2"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:id="@+id/G3imgMB4"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        app:srcCompat="@drawable/number4"
+        android:layout_below="@+id/layout2"
+        android:layout_toRightOf="@+id/G3imgMB3"
+        android:layout_toEndOf="@+id/G3imgMB3" />
+
+    <ImageButton
+        android:id="@+id/G3imgMB5"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        app:srcCompat="@drawable/number5"
+        android:layout_below="@+id/layout2"
+        android:layout_toRightOf="@+id/G3imgMB4"
+        android:layout_toEndOf="@+id/G3imgMB4" />
+
+    <ProgressBar
+        android:id="@+id/progressBarG3"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:progressDrawable="@drawable/myprogressbar" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progressBarG3"
+        android:layout_marginTop="76dp"
+        android:layout_toEndOf="@+id/G3imgMB5"
+        android:layout_toRightOf="@+id/G3imgMB5"
+        android:text="TextView"
+        android:textSize="30sp" />
 
 
 </RelativeLayout>

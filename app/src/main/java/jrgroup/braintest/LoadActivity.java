@@ -3,6 +3,7 @@ package jrgroup.braintest;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.animation.Animation;
@@ -23,6 +24,7 @@ public class LoadActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load);
+        noactionbar();
         StartAnimations();
 
     }
@@ -72,5 +74,13 @@ public class LoadActivity extends AppCompatActivity {
         super.onPause();
         finish();
     }
+
+    public void noactionbar()
+    {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+    }
+
+
 }
 

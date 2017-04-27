@@ -1,24 +1,37 @@
 package jrgroup.braintest;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.Random;
 
-public class VisionActivity extends AppCompatActivity {
+public class VisionActivity extends AppGeneral {
     ImageView img1,img2,img3,img4,img5;
-    Button btn;
+    ImageButton btR, G3btMB1, G3btMB2, G3btMB3, G3btMB4, G3btMB5;
     AnimationSet rootset = new AnimationSet(true);
     Random rand = new Random();
-    TextView txtv;
+    TextView txtv,txtdiem;
+    ProgressBar pgb;
     int duration2,duration,duration3,duration4,duration5;
+    Thread myThread = null;
+    int breakwhile = 0;
+    int ProcessStatus = 0;
+    int diem;
+    Handler handler = new Handler();
+    MediaPlayer song,sound1;
+    int top9 = 0,top10 = 0,num = 0;
+
     TranslateAnimation transX1= new TranslateAnimation(Animation.RELATIVE_TO_SELF,0,Animation.RELATIVE_TO_SELF,-1200);
     TranslateAnimation transX2= new TranslateAnimation(Animation.RELATIVE_TO_SELF,0,Animation.RELATIVE_TO_SELF,-1200);
     TranslateAnimation transX3= new TranslateAnimation(Animation.RELATIVE_TO_SELF,0,Animation.RELATIVE_TO_SELF,-1200);
@@ -28,51 +41,134 @@ public class VisionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vision);
+        song=MediaPlayer.create(getApplicationContext(),R.raw.speedoflink);
+        song.setLooping(true);
+        song.start();
+
         img1 = (ImageView) findViewById(R.id.imgso1);
         img2 = (ImageView) findViewById(R.id.imgso2);
         img3 = (ImageView) findViewById(R.id.imgso3);
         img4 = (ImageView) findViewById(R.id.imgso4);
         img5 = (ImageView) findViewById(R.id.imgso5);
-        btn = (Button) findViewById(R.id.button);
+        btR = (ImageButton) findViewById(R.id.button);
+        G3btMB1 = (ImageButton) findViewById(R.id.G3imgMB1);
+        G3btMB2 = (ImageButton) findViewById(R.id.G3imgMB2);
+        G3btMB3 = (ImageButton) findViewById(R.id.G3imgMB3);
+        G3btMB4 = (ImageButton) findViewById(R.id.G3imgMB4);
+        G3btMB5 = (ImageButton) findViewById(R.id.G3imgMB5);
+        pgb = (ProgressBar) findViewById(R.id.progressBarG3);
+        txtv =(TextView) findViewById(R.id.textView2);
+        txtdiem =(TextView) findViewById(R.id.textView3);
 
-
-
-        btn.setOnClickListener(new View.OnClickListener() {
+        ReadSave();
+        diem = 0;
+        thongbao3(R.string.begining3);
+        txtdiem.setText(String.valueOf(diem));
+        btR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 txtv.setText(String.valueOf(hienthi()));
             }
         });
-
-        txtv =(TextView) findViewById(R.id.textView2);
-
-
-
+        G3btMB1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (txtv.getText().toString() == "1")
+                {
+                    txtv.setText(String.valueOf(hienthi()));
+                    diem++;
+                    txtdiem.setText(String.valueOf(diem));
+                }
+                else
+                    breakwhile = 1;
+            }
+        });
+        G3btMB2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (txtv.getText().toString() == "2")
+                {
+                    txtv.setText(String.valueOf(hienthi()));
+                    diem++;
+                    txtdiem.setText(String.valueOf(diem));
+                }
+                else
+                    breakwhile = 1;
+            }
+        });
+        G3btMB3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if (txtv.getText().toString() == "3")
+                {
+                    txtv.setText(String.valueOf(hienthi()));
+                     diem++;
+                    txtdiem.setText(String.valueOf(diem));
+                }
+                else
+                    breakwhile = 1;
+            }
+        });
+        G3btMB4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (txtv.getText().toString() == "4")
+                {
+                    txtv.setText(String.valueOf(hienthi()));
+                    diem++;
+                    txtdiem.setText(String.valueOf(diem));
+                }
+                else
+                    breakwhile = 1;
+            }
+        });
+        G3btMB5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (txtv.getText().toString() == "5")
+                {
+                    txtv.setText(String.valueOf(hienthi()));
+                    diem++;txtdiem.setText(String.valueOf(diem));
+                }
+                else
+                    breakwhile = 1;
+            }
+        });
 
     }
 
     public void setanimation(TranslateAnimation name,int start,int duration,boolean fillafter)
     {
-        //name = new TranslateAnimation(Animation.RELATIVE_TO_SELF,0,Animation.RELATIVE_TO_SELF,-1000);
         name.setStartOffset(start);
         name.setDuration(duration);
         name.setFillAfter(fillafter);
         rootset.addAnimation(name);
     }
+    protected void ReadSave()
+    {
+        SharedPreferences myPrefs = getSharedPreferences("top910",
+                Activity. MODE_PRIVATE);
+        int myTop9 = myPrefs.getInt("top9",0);
+        int myTop10 = myPrefs.getInt("top10",0);
+        top9 = myTop9;
+        top10 = myTop10;
+    }
+
     public int hienthi()
     {
-        duration =  500+rand.nextInt(10)*30;
+        duration =  400+rand.nextInt(10)*60;
         do{
-            duration2 = 500+rand.nextInt(10)*30;
+            duration2 = 400+rand.nextInt(10)*60;
         }while(duration2==duration);
         do{
-            duration3= 500+rand.nextInt(10)*30;
+            duration3= 400+rand.nextInt(10)*60;
         }while((duration3==duration2)||(duration3==duration));
         do {
-            duration4 = 500+rand.nextInt(10)*30;
+            duration4 = 400+rand.nextInt(10)*60;
         }while((duration4==duration2)||(duration4==duration)||(duration4==duration3));
         do {
-            duration5 = 500+rand.nextInt(10)*30;
+            duration5 = 400+rand.nextInt(10)*60;
         }while((duration5==duration2)||(duration5==duration)||(duration5==duration3)||(duration5==duration4));
 
 
@@ -97,5 +193,91 @@ public class VisionActivity extends AppCompatActivity {
         return vitri;
     }
 
+    @Override
+    public void TimerAfter() {
+        txtv.setText(String.valueOf(hienthi()));
+    }
 
+    @Override
+    public void Timer() {
+        ProcessStatus = 0;
+
+        myThread = new Thread() {
+            @Override
+            public void run() {
+                while(ProcessStatus<999)
+                {
+                    if(breakwhile==1) {
+                        break;
+                    }
+                    ProcessStatus +=1;
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            pgb.setMax(1000);
+                            pgb.setRotation(180);
+                            pgb.setProgress(ProcessStatus);
+                        }
+
+                    });
+                    try{
+                        Thread.sleep(50);
+                    }
+                    catch (InterruptedException e)
+                    {
+                        e.printStackTrace();
+                    }
+
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(diem > top10)
+                        {
+                            thongbaothang(VisionActivity.this,diem,3);
+                        }
+                        else
+                        {
+                            thongbao(VisionActivity.class,diem);
+                        }
+                    }
+                });
+            }
+        };
+        myThread.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences myPrefs = getSharedPreferences("top910",
+                Activity. MODE_PRIVATE);
+        SharedPreferences.Editor editor = myPrefs.edit();
+        if(num < 10)
+            num++;
+        else
+        {
+            if (diem > top10) {
+                if (diem > top9)
+                {
+                    top10 = top9;
+                    top9 = diem;
+                }
+                else
+                {
+                    top10 = diem;
+                }
+            }
+        }
+        editor.putInt("top9", top9);
+        editor.putInt("top10",top10);
+        editor.commit();
+        song.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        song.start();
+    }
 }

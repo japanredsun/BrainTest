@@ -1,11 +1,10 @@
 package jrgroup.braintest;
 
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.app.Activity;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -13,10 +12,9 @@ import android.widget.TextView;
 
 import java.util.Random;
 
-public class QuickMathActivity extends AppCompatActivity {
+public class QuickMathActivity extends AppGeneral {
 
     int ProcessStatus = 0;
-    ProgressBar pgbG4;
     Random rand = new Random();
     Handler handler = new Handler();
     Thread myThread = null;
@@ -26,20 +24,26 @@ public class QuickMathActivity extends AppCompatActivity {
     ProgressBar pgb;
     TextView txt, txtDiemG4;
     Button g4btup, g4btright, g4btleft, g4btdown;
+    MediaPlayer song,sound1;
+    int top9 = 0,top10 = 0,num = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quick_math);
+        song=MediaPlayer.create(getApplicationContext(),R.raw.trueorfalse);
+        song.setLooping(true);
         g4btup = (Button)findViewById(R.id.G4btUp);
         g4btright = (Button)findViewById(R.id.G4btRight);
         g4btleft = (Button)findViewById(R.id.G4btLeft);
         g4btdown = (Button)findViewById(R.id.G4btDown);
         txt = (TextView)findViewById(R.id.textView);
         txtDiemG4 = (TextView)findViewById(R.id.txtDiemG4);
-        pgbG4 = (ProgressBar)findViewById(R.id.progressBarG4);
+        pgb = (ProgressBar)findViewById(R.id.progressBarG4);
 
+        ReadSave();
         diem = 0;
-        thongbao3();
+        thongbao3(R.string.begining2);
         Vitri= Hienthi();
         g4btup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +98,16 @@ public class QuickMathActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    protected void ReadSave()
+    {
+        SharedPreferences myPrefs = getSharedPreferences("top910",
+                Activity. MODE_PRIVATE);
+        int myTop9 = myPrefs.getInt("top9",0);
+        int myTop10 = myPrefs.getInt("top10",0);
+        top9 = myTop9;
+        top10 = myTop10;
     }
 
     public int Hienthi()
@@ -158,8 +172,8 @@ public class QuickMathActivity extends AppCompatActivity {
         return kq;
     }
 
-    public void Timer()
-    {
+    @Override
+    public void Timer() {
         ProcessStatus = 0;
 
         myThread = new Thread() {
@@ -174,9 +188,9 @@ public class QuickMathActivity extends AppCompatActivity {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            pgbG4.setMax(1000);
-                            pgbG4.setRotation(180);
-                            pgbG4.setProgress(ProcessStatus);
+                            pgb.setMax(1000);
+                            pgb.setRotation(180);
+                            pgb.setProgress(ProcessStatus);
                         }
 
                     });
@@ -192,85 +206,53 @@ public class QuickMathActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        thongbao();
+                        if(diem > top10)
+                        {
+                            thongbaothang(QuickMathActivity.this,diem,4);
+                        }
+                        else
+                        {
+                            thongbao(QuickMathActivity.class,diem);
+                        }
                     }
                 });
             }
         };
         myThread.start();
     }
-    public void thongbao()
-    {
-        AlertDialog.Builder thongbao = new AlertDialog.Builder(this);
-        thongbao.setTitle(R.string.thongbao1);
-        thongbao.setMessage("Your score: " + diem);
-        thongbao.setIcon(R.drawable.pauseicon);
 
 
-        thongbao.setPositiveButton(R.string.thongbaotraloi1, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface arg0, int arg1) {
-                Intent mhtraining = new Intent(QuickMathActivity.this, TrainingActivity.class);
-                mhtraining.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(mhtraining);
-                QuickMathActivity.this.finish();
-
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences myPrefs = getSharedPreferences("top910",
+                Activity. MODE_PRIVATE);
+        SharedPreferences.Editor editor = myPrefs.edit();
+        if(num < 10)
+            num++;
+        else
+        {
+            if (diem > top10) {
+                if (diem > top9)
+                {
+                    top10 = top9;
+                    top9 = diem;
+                }
+                else
+                {
+                    top10 = diem;
+                }
             }
-        });
-
-        thongbao.setNegativeButton(R.string.thongbaotraloi2, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                Intent playagain = new Intent(QuickMathActivity.this, QuickMathActivity.class);
-                playagain.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(playagain);
-                QuickMathActivity.this.finish();
-
-
-            }
-        });
-
-        thongbao.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-
-                Intent playagain = new Intent(QuickMathActivity.this, QuickMathActivity.class);
-                playagain.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(playagain);
-                QuickMathActivity.this.finish();
-
-            }
-        });
-
-        AlertDialog alertDialog = thongbao.create();
-        // tạo dialog
-        alertDialog.show();
+        }
+        editor.putInt("top9", top9);
+        editor.putInt("top10",top10);
+        editor.commit();
+        song.pause();
     }
-    public void thongbao3()
-    {
-        AlertDialog.Builder thongbao = new AlertDialog.Builder(this);
 
-        thongbao.setMessage(R.string.begining1);
-
-        thongbao.setPositiveButton(R.string.begin_btn, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface arg0, int arg1) {
-                Timer();
-            }
-        });
-        thongbao.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                Timer();
-            }
-        });
-
-        AlertDialog alertDialog = thongbao.create();
-        // tạo dialog
-        alertDialog.show();
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        song.start();
     }
 }

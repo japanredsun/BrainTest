@@ -10,4 +10,18 @@
     <string name="begin_btn">Begin</string>
     <string name="title_activity_quick_math">QuickMathActivity</string>
     <string name="G2btUP">G2btUP</string>
+    <string name="G3btReset"></string>
+    <string name="begining2">Choose the highest number in limited time. Good Luck! </string>
+    <string name="begining3">Choose the fastest car in limited time. Good Luck!</string>
+    <string name="begining4">Remember and choose the right number. Good luck!</string>
+    <string name="G2warn">Only 6 is available</string>
+    <string name="G2warn1">Fill full the blank!</string>
+    <string name="txthd">High Score</string>
+    <string name="txtR">Reflexion</string>
+    <string name="txtM">Memory</string>
+    <string name="txtV">Vision</string>
+    <string name="txtQM">Quick Math</string>
+    <string name="ruler">______________________</string>
+    <string name="txtEnterName">Enter Your Name:</string>
+    <string name="txtTop10">Congratulation!!</string>
 </resources>

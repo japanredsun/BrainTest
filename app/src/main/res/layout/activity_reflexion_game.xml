@@ -39,7 +39,7 @@
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/progressBar"
+        android:layout_below="@+id/progressBarG3"
         app:srcCompat="@drawable/pauseicon" />
 
     <ImageButton
@@ -66,7 +66,7 @@
         />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBarG3"
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

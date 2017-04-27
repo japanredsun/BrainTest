@@ -5,4 +5,6 @@
     <color name="colorAccent">#ea0d27</color>
     <color name="colorBtG4">#9ff4e1</color>
     <color name="colorFBtG4">#072ed9</color>
+    <color name="colorHeader">#f40e0e</color>
+    <color name="colorLoser">#033cf5</color>
 </resources>

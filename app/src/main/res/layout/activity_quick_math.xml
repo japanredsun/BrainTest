@@ -29,46 +29,50 @@
 
     <Button
         android:id="@+id/G4btUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/progressBar"
+        android:layout_width="130dp"
+        android:layout_height="55dp"
+        android:layout_below="@+id/progressBarG3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="180dp"
+        android:background="@drawable/bgmath"
         android:text="Button"
-        android:background="@color/colorFBtG4"
         android:textColor="@color/colorBtG4"
         android:textSize="30sp" />
 
     <Button
         android:id="@+id/G4btRight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="55dp"
         android:layout_marginLeft="220dp"
         android:layout_marginTop="250dp"
+        android:background="@drawable/bgmath"
         android:text="Button"
-        android:background="@color/colorFBtG4"
         android:textColor="@color/colorBtG4"
         android:textSize="30sp" />
 
     <Button
         android:id="@+id/G4btLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="250dp"
+        android:layout_width="130dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/bgmath"
         android:text="Button"
-        android:background="@color/colorFBtG4"
         android:textColor="@color/colorBtG4"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:layout_alignBaseline="@+id/G4btRight"
+        android:layout_alignBottom="@+id/G4btRight"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp" />
 
     <Button
         android:id="@+id/G4btDown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="55dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="320dp"
+        android:background="@drawable/bgmath"
         android:text="Button"
-        android:background="@color/colorFBtG4"
         android:textColor="@color/colorBtG4"
         android:textSize="30sp" />
 
@@ -80,13 +84,14 @@
         android:layout_marginBottom="22dp"
         android:layout_toEndOf="@+id/G4btDown"
         android:layout_toRightOf="@+id/G4btDown"
-        android:text="TextView" />
+        android:text="TextView"
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/txtDiemG4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/progressBar"
+        android:layout_below="@+id/progressBarG3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="63dp"
         android:text="@string/txtDiem"

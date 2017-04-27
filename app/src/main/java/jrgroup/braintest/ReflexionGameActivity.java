@@ -1,11 +1,11 @@
 package jrgroup.braintest;
 
-import android.content.DialogInterface;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import java.util.Random;
 
-public class ReflexionGameActivity extends AppCompatActivity {
+public class ReflexionGameActivity extends AppGeneral {
     ProgressBar pgb;
     int ProcessStatus = 0;
     Handler handler = new Handler();
@@ -25,13 +25,17 @@ public class ReflexionGameActivity extends AppCompatActivity {
     Random rand = new Random();
     Thread myThread = null;
     int breakwhile = 0;
+    MediaPlayer song;
+    int top9 = 0,top10 = 0,num = 0;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reflexion_game);
-
+        song=MediaPlayer.create(getApplicationContext(),R.raw.trueorfalse);
+        song.setLooping(true);
         btPauseG1 = (ImageButton)findViewById(R.id.btPauseG1);
         btTrueG1 = (ImageButton)findViewById(R.id.btTrueG1);
         btWrongG1 = (ImageButton)findViewById(R.id.btWrongG1);
@@ -40,12 +44,12 @@ public class ReflexionGameActivity extends AppCompatActivity {
         rltG1.setBackgroundResource(R.drawable.background);
         txtTest = (TextView)findViewById(R.id.textView7);
         txtDiem = (TextView)findViewById(R.id.txtDiemG1);
-        pgb = (ProgressBar) findViewById(R.id.progressBar);
+        pgb = (ProgressBar) findViewById(R.id.progressBarG3);
 
-
+        ReadSave();
         diem = 0;
         txtTest.setText(String.valueOf(HienThi()));
-        thongbao3();
+        thongbao3(R.string.begining1);
         btTrueG1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,12 +84,22 @@ public class ReflexionGameActivity extends AppCompatActivity {
                 onPause();
             }
         });
+        double sodiem = Double.parseDouble(txtDiem.getText().toString());
+        Intent myintent = new Intent(ReflexionGameActivity.this, RecordActivity.class);
+        Bundle bd = new Bundle();
+        bd.putDouble("Sodiem", sodiem);
+        myintent.putExtras(bd);
+        //startActivityForResult(myintent, 1312);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-
+    protected void ReadSave()
+    {
+        SharedPreferences myPrefs = getSharedPreferences("top910",
+                Activity. MODE_PRIVATE);
+        int myTop9 = myPrefs.getInt("top9",0);
+        int myTop10 = myPrefs.getInt("top10",0);
+        top9 = myTop9;
+        top10 = myTop10;
     }
 
     public boolean HienThi()
@@ -133,86 +147,8 @@ public class ReflexionGameActivity extends AppCompatActivity {
         return kq == kqhienthi;
     }
 
-    public void thongbao()
-    {
-        AlertDialog.Builder thongbao = new AlertDialog.Builder(this);
-        thongbao.setTitle(R.string.thongbao1);
-        thongbao.setMessage("Your score: " + diem);
-        thongbao.setIcon(R.drawable.pauseicon);
-
-
-        thongbao.setPositiveButton(R.string.thongbaotraloi1, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface arg0, int arg1) {
-                Intent mhtraining = new Intent(ReflexionGameActivity.this, TrainingActivity.class);
-                mhtraining.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(mhtraining);
-                ReflexionGameActivity.this.finish();
-
-
-            }
-        });
-
-        thongbao.setNegativeButton(R.string.thongbaotraloi2, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                Intent playagain = new Intent(ReflexionGameActivity.this, ReflexionGameActivity.class);
-                playagain.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(playagain);
-                ReflexionGameActivity.this.finish();
-
-
-            }
-        });
-
-        thongbao.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-
-                Intent playagain = new Intent(ReflexionGameActivity.this, ReflexionGameActivity.class);
-                playagain.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(playagain);
-                ReflexionGameActivity.this.finish();
-
-            }
-        });
-
-        AlertDialog alertDialog = thongbao.create();
-        // tạo dialog
-        alertDialog.show();
-
-
-    }
-
-    public void thongbao3()
-    {
-        AlertDialog.Builder thongbao = new AlertDialog.Builder(this);
-
-        thongbao.setMessage(R.string.begining1);
-
-        thongbao.setPositiveButton(R.string.begin_btn, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface arg0, int arg1) {
-                Timer();
-            }
-        });
-        thongbao.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                Timer();
-            }
-        });
-
-        AlertDialog alertDialog = thongbao.create();
-        // tạo dialog
-        alertDialog.show();
-
-
-    }
-
-    public void Timer()
-    {
+    @Override
+    public void Timer() {
         ProcessStatus = 0;
 
         myThread = new Thread() {
@@ -239,21 +175,61 @@ public class ReflexionGameActivity extends AppCompatActivity {
                     catch (InterruptedException e)
                     {
                         e.printStackTrace();
-                                            }
+                    }
 
                 }
                 runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        thongbao();
+                        @Override
+                        public void run() {
+                        if(diem > top10)
+                        {
+                            thongbaothang(ReflexionGameActivity.this,diem,1);
+                        }
+                        else
+                        {
+                            thongbao(ReflexionGameActivity.class,diem);
+                        }
                     }
                 });
+
             }
         };
         myThread.start();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        song.start();
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences myPrefs = getSharedPreferences("top910",
+                Activity. MODE_PRIVATE);
+        SharedPreferences.Editor editor = myPrefs.edit();
+        if(num < 10)
+            num++;
+        else
+        {
+            if (diem > top10) {
+                if (diem > top9)
+                {
+                    top10 = top9;
+                    top9 = diem;
+                }
+                else
+                {
+                    top10 = diem;
+                }
+            }
+        }
+        editor.putInt("top9", top9);
+        editor.putInt("top10",top10);
+        editor.commit();
+        song.pause();
+    }
 
 }
 

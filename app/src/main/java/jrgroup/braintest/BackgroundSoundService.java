@@ -19,13 +19,12 @@ public class BackgroundSoundService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        player = MediaPlayer.create(this, R.raw.music);
+        player = MediaPlayer.create(this, R.raw.braintestmenu);
         player.setLooping(true); // Set looping
         player.setVolume(100,100);
-
     }
     public int onStartCommand(Intent intent, int flags, int startId) {
-        player.start();
+       player.start();
         return START_STICKY;
     }
 
@@ -51,6 +50,8 @@ public class BackgroundSoundService extends Service {
 
     @Override
     public void onLowMemory() {
-
+            // do notthing
     }
+
+
 }
