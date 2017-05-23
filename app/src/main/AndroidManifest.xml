@@ -51,10 +51,10 @@
         <activity
             android:name=".HighScoreActivity"
             android:exported="true" />
-        <activity android:name=".HSReflexionActivity" />
+        <activity android:name=".HSReflexionActivity" android:exported="true"/>
         <activity android:name=".HSMemoryActivity" />
         <activity android:name=".HSVisionActivity" />
-        <activity android:name=".HSQuickMathActivity"></activity>
+        <activity android:name=".HSQuickMathActivity" android:exported="true"></activity>
     </application>
 
 </manifest>

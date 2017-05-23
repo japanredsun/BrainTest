@@ -1,7 +1,6 @@
 package jrgroup.braintest;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -18,35 +17,39 @@ public class ReflexionGameActivity extends AppGeneral {
     ProgressBar pgb;
     int ProcessStatus = 0;
     Handler handler = new Handler();
+
     ImageButton btPauseG1, btTrueG1, btWrongG1;
-    TextView txtHienThi, txtTest, txtDiem;
+    TextView txtHienThi, txtTest, txtDiem, txtHS;
     RelativeLayout rltG1;
+    
     int diem;
     Random rand = new Random();
     Thread myThread = null;
     int breakwhile = 0;
+    int top1 = 0, kt = 0;
     MediaPlayer song;
-    int top9 = 0,top10 = 0,num = 0;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reflexion_game);
-        song=MediaPlayer.create(getApplicationContext(),R.raw.trueorfalse);
+
+        song = MediaPlayer.create(getApplicationContext(),R.raw.trueorfalse);
         song.setLooping(true);
         btPauseG1 = (ImageButton)findViewById(R.id.btPauseG1);
         btTrueG1 = (ImageButton)findViewById(R.id.btTrueG1);
         btWrongG1 = (ImageButton)findViewById(R.id.btWrongG1);
-        txtHienThi = (TextView)findViewById(R.id.txtHienThiG1);
         rltG1 = (RelativeLayout)findViewById(R.id.rltLG1);
         rltG1.setBackgroundResource(R.drawable.background);
         txtTest = (TextView)findViewById(R.id.textView7);
+        txtHS = (TextView)findViewById(R.id.textView15);
+        txtHienThi = (TextView)findViewById(R.id.txtHienThiG1);
         txtDiem = (TextView)findViewById(R.id.txtDiemG1);
         pgb = (ProgressBar) findViewById(R.id.progressBarG3);
 
+
         ReadSave();
+        txtHS.setText(String.valueOf(top1));
         diem = 0;
         txtTest.setText(String.valueOf(HienThi()));
         thongbao3(R.string.begining1);
@@ -84,22 +87,15 @@ public class ReflexionGameActivity extends AppGeneral {
                 onPause();
             }
         });
-        double sodiem = Double.parseDouble(txtDiem.getText().toString());
-        Intent myintent = new Intent(ReflexionGameActivity.this, RecordActivity.class);
-        Bundle bd = new Bundle();
-        bd.putDouble("Sodiem", sodiem);
-        myintent.putExtras(bd);
-        //startActivityForResult(myintent, 1312);
+
     }
 
     protected void ReadSave()
     {
         SharedPreferences myPrefs = getSharedPreferences("top910",
                 Activity. MODE_PRIVATE);
-        int myTop9 = myPrefs.getInt("top9",0);
-        int myTop10 = myPrefs.getInt("top10",0);
-        top9 = myTop9;
-        top10 = myTop10;
+        int stop1 = myPrefs.getInt("top1",0);
+        top1 = stop1;
     }
 
     public boolean HienThi()
@@ -176,12 +172,14 @@ public class ReflexionGameActivity extends AppGeneral {
                     {
                         e.printStackTrace();
                     }
-
                 }
-                runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                        if(diem > top10)
+                runOnUiThread(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+
+                        if(diem > top1)
                         {
                             thongbaothang(ReflexionGameActivity.this,diem,1);
                         }
@@ -206,28 +204,16 @@ public class ReflexionGameActivity extends AppGeneral {
     @Override
     protected void onPause() {
         super.onPause();
-        SharedPreferences myPrefs = getSharedPreferences("top910",
-                Activity. MODE_PRIVATE);
-        SharedPreferences.Editor editor = myPrefs.edit();
-        if(num < 10)
-            num++;
-        else
+
+        if(diem > top1)
         {
-            if (diem > top10) {
-                if (diem > top9)
-                {
-                    top10 = top9;
-                    top9 = diem;
-                }
-                else
-                {
-                    top10 = diem;
-                }
-            }
+            SharedPreferences myPrefs = getSharedPreferences("top910",
+                Activity. MODE_PRIVATE);
+            SharedPreferences.Editor editor = myPrefs.edit();
+            editor.putInt("top1",diem);
+            editor.commit();
         }
-        editor.putInt("top9", top9);
-        editor.putInt("top10",top10);
-        editor.commit();
+
         song.pause();
     }
 

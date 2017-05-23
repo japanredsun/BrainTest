@@ -22,7 +22,7 @@ public class MemoryGameActivity extends AppGeneral {
     ArrayList<Integer> mangHinhLon = new ArrayList<Integer>();
     ImageView imv1,imv2,imv3,imv4,imv5,imv6;
     ImageButton ibt1,ibt2,ibt3,ibt4,ibt5,ibt6,ibtok,ibtdel;
-    TextView txtHs,txtS;
+    TextView txtHs,txtS,txtHsDiem;
     ProgressBar pgb;
     Random rand = new Random();
     Handler handler = new Handler();
@@ -33,13 +33,13 @@ public class MemoryGameActivity extends AppGeneral {
     int g2rand;
     int vitri = 0;
     MediaPlayer song;
-    int top9 = 0,top10 = 0,num = 0, kt = 0;
+    int top1 = 0, kt = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory_game);
-        song=MediaPlayer.create(getApplicationContext(),R.raw.music5);
+        song = MediaPlayer.create(getApplicationContext(),R.raw.music5);
         song.setLooping(true);
         song.start();
         imv1 = (ImageView) findViewById(R.id.G2Imv1);
@@ -58,12 +58,15 @@ public class MemoryGameActivity extends AppGeneral {
         ibtok = (ImageButton) findViewById(R.id.G2ImBtOK);
         ibtdel = (ImageButton) findViewById(R.id.G2ImBtDel);
 
-        txtHs = (TextView) findViewById(R.id.G2txtHS);
         txtS = (TextView) findViewById(R.id.G2txtS);
+        txtHsDiem = (TextView) findViewById(R.id.G2txtHSDiem);
 
         pgb = (ProgressBar) findViewById(R.id.progressBar);
 
         ReadSave();
+
+        txtHsDiem.setText(String.valueOf(top1));
+
         thongbao3(R.string.begining4);
 
         mangHinhLon.add(R.drawable.dice1);
@@ -309,10 +312,8 @@ public class MemoryGameActivity extends AppGeneral {
                         g2de.clear();
                         HienThi();
                         vitri = 0;
-                    } else
-
-                    {
-                        if(diem > top10)
+                    } else{
+                        if(diem > top1)
                         {
                             thongbaothang(MemoryGameActivity.this,diem,2);
                         }
@@ -458,28 +459,14 @@ public class MemoryGameActivity extends AppGeneral {
     @Override
     protected void onPause() {
         super.onPause();
-        SharedPreferences myPrefs = getSharedPreferences("top910",
-                Activity. MODE_PRIVATE);
-        SharedPreferences.Editor editor = myPrefs.edit();
-        if(num < 10)
-            num++;
-        else
+        if(diem > top1)
         {
-            if (diem > top10) {
-                if (diem > top9)
-                {
-                    top10 = top9;
-                    top9 = diem;
-                }
-                else
-                {
-                    top10 = diem;
-                }
-            }
+            SharedPreferences myPrefs = getSharedPreferences("top910",
+                    Activity. MODE_PRIVATE);
+            SharedPreferences.Editor editor = myPrefs.edit();
+            editor.putInt("top1",diem);
+            editor.commit();
         }
-        editor.putInt("top9", top9);
-        editor.putInt("top10",top10);
-        editor.commit();
         song.pause();
     }
 
@@ -487,10 +474,8 @@ public class MemoryGameActivity extends AppGeneral {
     {
         SharedPreferences myPrefs = getSharedPreferences("top910",
                 Activity. MODE_PRIVATE);
-        int myTop9 = myPrefs.getInt("top9",0);
-        int myTop10 = myPrefs.getInt("top10",0);
-        top9 = myTop9;
-        top10 = myTop10;
+        int stop1 = myPrefs.getInt("top1",0);
+        top1 = stop1;
     }
 
     @Override

@@ -21,7 +21,7 @@ public class VisionActivity extends AppGeneral {
     ImageButton btR, G3btMB1, G3btMB2, G3btMB3, G3btMB4, G3btMB5;
     AnimationSet rootset = new AnimationSet(true);
     Random rand = new Random();
-    TextView txtv,txtdiem;
+    TextView txtv,txtdiem,txtHS;
     ProgressBar pgb;
     int duration2,duration,duration3,duration4,duration5;
     Thread myThread = null;
@@ -30,7 +30,7 @@ public class VisionActivity extends AppGeneral {
     int diem;
     Handler handler = new Handler();
     MediaPlayer song,sound1;
-    int top9 = 0,top10 = 0,num = 0;
+    int top1 = 0, kt = 0;
 
     TranslateAnimation transX1= new TranslateAnimation(Animation.RELATIVE_TO_SELF,0,Animation.RELATIVE_TO_SELF,-1200);
     TranslateAnimation transX2= new TranslateAnimation(Animation.RELATIVE_TO_SELF,0,Animation.RELATIVE_TO_SELF,-1200);
@@ -58,9 +58,11 @@ public class VisionActivity extends AppGeneral {
         G3btMB5 = (ImageButton) findViewById(R.id.G3imgMB5);
         pgb = (ProgressBar) findViewById(R.id.progressBarG3);
         txtv =(TextView) findViewById(R.id.textView2);
+        txtHS =(TextView) findViewById(R.id.textView5);
         txtdiem =(TextView) findViewById(R.id.textView3);
 
         ReadSave();
+        txtHS.setText(String.valueOf(top1));
         diem = 0;
         thongbao3(R.string.begining3);
         txtdiem.setText(String.valueOf(diem));
@@ -149,10 +151,8 @@ public class VisionActivity extends AppGeneral {
     {
         SharedPreferences myPrefs = getSharedPreferences("top910",
                 Activity. MODE_PRIVATE);
-        int myTop9 = myPrefs.getInt("top9",0);
-        int myTop10 = myPrefs.getInt("top10",0);
-        top9 = myTop9;
-        top10 = myTop10;
+        int stop1 = myPrefs.getInt("top1",0);
+        top1 = stop1;
     }
 
     public int hienthi()
@@ -232,7 +232,7 @@ public class VisionActivity extends AppGeneral {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if(diem > top10)
+                        if(diem > top1)
                         {
                             thongbaothang(VisionActivity.this,diem,3);
                         }
@@ -250,28 +250,14 @@ public class VisionActivity extends AppGeneral {
     @Override
     protected void onPause() {
         super.onPause();
-        SharedPreferences myPrefs = getSharedPreferences("top910",
-                Activity. MODE_PRIVATE);
-        SharedPreferences.Editor editor = myPrefs.edit();
-        if(num < 10)
-            num++;
-        else
+        if(diem > top1)
         {
-            if (diem > top10) {
-                if (diem > top9)
-                {
-                    top10 = top9;
-                    top9 = diem;
-                }
-                else
-                {
-                    top10 = diem;
-                }
-            }
+            SharedPreferences myPrefs = getSharedPreferences("top910",
+                    Activity. MODE_PRIVATE);
+            SharedPreferences.Editor editor = myPrefs.edit();
+            editor.putInt("top1",diem);
+            editor.commit();
         }
-        editor.putInt("top9", top9);
-        editor.putInt("top10",top10);
-        editor.commit();
         song.pause();
     }
 

@@ -12,24 +12,24 @@
         android:id="@+id/btnhsRef"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        app:srcCompat="@drawable/ref" />
+        android:src="@drawable/pause" />
 
     <ImageButton
         android:id="@+id/btnhsMem"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        app:srcCompat="@drawable/game1" />
+        android:src="@drawable/pause" />
 
     <ImageButton
         android:id="@+id/btnhsVis"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        app:srcCompat="@drawable/game3" />
+        android:src="@drawable/pause" />
 
     <ImageButton
         android:id="@+id/btnhsQMath"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        app:srcCompat="@drawable/game4" />
+        android:src="@drawable/pause" />
 
 </LinearLayout>

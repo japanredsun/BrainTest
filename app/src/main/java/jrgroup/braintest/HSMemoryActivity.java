@@ -1,30 +1,25 @@
 package jrgroup.braintest;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 public class HSMemoryActivity extends AppCompatActivity {
 
-    TextView txtname, txtscore;
+    /*TextView txtname, txtscore;
     Button btnBTT, btnPA;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hsmemory);
 
-        txtname = (TextView) findViewById(R.id.txtname);
-        txtscore = (TextView) findViewById(R.id.txtscore);
+        txtname = (TextView) findViewById(R.id.txtname1);
+        txtscore = (TextView) findViewById(R.id.txtscore1);
         btnBTT = (Button) findViewById(R.id.btnBTT);
         btnPA = (Button) findViewById(R.id.btnPA);
 
         Intent myCallerIntentRef = getIntent();
-        Bundle bundleR = myCallerIntentRef.getExtras();
-        String name = bundleR.getString("name");
-        Integer diem = bundleR.getInt("score");
+        Bundle bundleB = myCallerIntentRef.getExtras();
+        String name = bundleB.getString("name");
+        Integer diem = bundleB.getInt("score");
 
         txtname.setText(name);
         txtscore.setText(diem.toString());
@@ -48,5 +43,5 @@ public class HSMemoryActivity extends AppCompatActivity {
                 startActivity(mhG2);
             }
         });
-    }
+    }*/
 }

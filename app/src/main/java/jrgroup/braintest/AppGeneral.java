@@ -44,7 +44,7 @@ public class AppGeneral extends AppCompatActivity {
                 {
                     case 1:
                     {
-                        Intent mhR = new Intent(context, HSReflexionActivity.class);
+                        Intent mhR = new Intent(context, TrainingActivity.class);
                         Bundle bundleR = new Bundle();
                         bundleR.putString("name", edtYourName.getText().toString());
                         bundleR.putInt("score", diem);
@@ -56,7 +56,7 @@ public class AppGeneral extends AppCompatActivity {
                     }
                     case 2:
                     {
-                        Intent mhM = new Intent(context, HSMemoryActivity.class);
+                        Intent mhM = new Intent(context, TrainingActivity.class);
                         Bundle bundleM = new Bundle();
                         bundleM.putString("name", edtYourName.getText().toString());
                         bundleM.putInt("score", diem);
@@ -68,7 +68,7 @@ public class AppGeneral extends AppCompatActivity {
                     }
                     case 3:
                     {
-                        Intent mhV = new Intent(context, HSVisionActivity.class);
+                        Intent mhV = new Intent(context, TrainingActivity.class);
                         Bundle bundleV = new Bundle();
                         bundleV.putString("name", edtYourName.getText().toString());
                         bundleV.putInt("score", diem);
@@ -80,12 +80,12 @@ public class AppGeneral extends AppCompatActivity {
                     }
                     case 4:
                     {
-                        Intent mhQM = new Intent(context, HSQuickMathActivity.class);
+                        Intent mhQM = new Intent(context, TrainingActivity.class);
                         Bundle bundleQM = new Bundle();
                         bundleQM.putString("name", edtYourName.getText().toString());
                         bundleQM.putInt("score", diem);
                         mhQM.putExtras(bundleQM);
-                        startActivityForResult(mhQM, 1);
+                        startActivityForResult(mhQM, 4);
                         mhQM.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(mhQM);
                         break;

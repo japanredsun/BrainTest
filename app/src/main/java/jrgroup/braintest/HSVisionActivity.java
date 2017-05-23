@@ -1,23 +1,18 @@
 package jrgroup.braintest;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 public class HSVisionActivity extends AppCompatActivity {
 
-    TextView txtname, txtscore;
+    /*TextView txtname, txtscore;
     Button btnBTT, btnPA;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hsvision);
 
-        txtname = (TextView) findViewById(R.id.txtname);
-        txtscore = (TextView) findViewById(R.id.txtscore);
+        txtname = (TextView) findViewById(R.id.txtname1);
+        txtscore = (TextView) findViewById(R.id.txtscore1);
         btnBTT = (Button) findViewById(R.id.btnBTT);
         btnPA = (Button) findViewById(R.id.btnPA);
 
@@ -48,5 +43,5 @@ public class HSVisionActivity extends AppCompatActivity {
                 startActivity(mhG2);
             }
         });
-    }
+    }*/
 }

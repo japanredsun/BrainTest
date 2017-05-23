@@ -8,36 +8,45 @@
     tools:context="jrgroup.braintest.MemoryGameActivity"
     android:background="@drawable/background">
 
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="@android:style/Widget.ProgressBar.Horizontal"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:progressDrawable="@drawable/myprogressbar"/>
+        android:layout_height="150dp">
 
-    <TextView
-        android:id="@+id/G2txtHS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="HighScore"
-        android:textSize="30dp" />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:progressDrawable="@drawable/myprogressbar" />
 
-    <TextView
-        android:id="@+id/G2txtS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="0"
-        android:textSize="30dp"
-        />
+        <TextView
+            android:id="@+id/G2txtHSDiem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/progressBar"
+            android:layout_gravity="right"
+            android:text="0"
+            android:textSize="24dp" />
+
+        <TextView
+            android:id="@+id/G2txtS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="0"
+            android:textSize="30dp"
+            android:layout_below="@+id/G2txtHSDiem"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="50dp">
+        >
 
         <ImageView
             android:id="@+id/G2Imv1"

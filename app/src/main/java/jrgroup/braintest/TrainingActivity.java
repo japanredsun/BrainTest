@@ -43,17 +43,7 @@ public class TrainingActivity extends AppCompatActivity {
                 stopService(new Intent(TrainingActivity.this,BackgroundSoundService.class));
             }
         });
-        ibtBack = (ImageButton) findViewById(R.id.btnBackTraining);
-        ibtBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mhmain = new Intent(TrainingActivity.this, MainActivity.class);
-                mhmain.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                TrainingActivity.this.finish();
-                startActivity(mhmain);
-                stopService(new Intent(TrainingActivity.this,BackgroundSoundService.class));
-            }
-        });
+
         ibtG3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +66,17 @@ public class TrainingActivity extends AppCompatActivity {
             }
         });
 
+        ibtBack = (ImageButton) findViewById(R.id.btnBackTraining);
+        ibtBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mhmain = new Intent(TrainingActivity.this, MainActivity.class);
+                mhmain.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                TrainingActivity.this.finish();
+                startActivity(mhmain);
+                stopService(new Intent(TrainingActivity.this,BackgroundSoundService.class));
+            }
+        });
     }
 
     @Override

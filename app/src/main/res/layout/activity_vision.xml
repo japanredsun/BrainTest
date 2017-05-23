@@ -149,8 +149,18 @@
         android:layout_marginTop="76dp"
         android:layout_toEndOf="@+id/G3imgMB5"
         android:layout_toRightOf="@+id/G3imgMB5"
+        android:text="0"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progressBarG3"
+        android:layout_toEndOf="@+id/textView3"
+        android:layout_toRightOf="@+id/textView3"
         android:text="TextView"
-        android:textSize="30sp" />
+        android:textSize="24dp" />
 
 
 </RelativeLayout>

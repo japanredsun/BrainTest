@@ -22,10 +22,10 @@ public class QuickMathActivity extends AppGeneral {
     int diem;
     int Vitri;
     ProgressBar pgb;
-    TextView txt, txtDiemG4;
+    TextView txt, txtDiemG4,txtHS;
     Button g4btup, g4btright, g4btleft, g4btdown;
     MediaPlayer song,sound1;
-    int top9 = 0,top10 = 0,num = 0;
+    int top1 = 0, kt = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +38,12 @@ public class QuickMathActivity extends AppGeneral {
         g4btleft = (Button)findViewById(R.id.G4btLeft);
         g4btdown = (Button)findViewById(R.id.G4btDown);
         txt = (TextView)findViewById(R.id.textView);
+        txtHS = (TextView)findViewById(R.id.textView16);
         txtDiemG4 = (TextView)findViewById(R.id.txtDiemG4);
         pgb = (ProgressBar)findViewById(R.id.progressBarG4);
 
         ReadSave();
+        txtHS.setText(String.valueOf(top1));
         diem = 0;
         thongbao3(R.string.begining2);
         Vitri= Hienthi();
@@ -100,15 +102,7 @@ public class QuickMathActivity extends AppGeneral {
 
     }
 
-    protected void ReadSave()
-    {
-        SharedPreferences myPrefs = getSharedPreferences("top910",
-                Activity. MODE_PRIVATE);
-        int myTop9 = myPrefs.getInt("top9",0);
-        int myTop10 = myPrefs.getInt("top10",0);
-        top9 = myTop9;
-        top10 = myTop10;
-    }
+
 
     public int Hienthi()
     {
@@ -206,7 +200,7 @@ public class QuickMathActivity extends AppGeneral {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if(diem > top10)
+                        if(diem > top1)
                         {
                             thongbaothang(QuickMathActivity.this,diem,4);
                         }
@@ -221,32 +215,25 @@ public class QuickMathActivity extends AppGeneral {
         myThread.start();
     }
 
+    protected void ReadSave()
+    {
+        SharedPreferences myPrefs = getSharedPreferences("top910",
+                Activity. MODE_PRIVATE);
+        int stop1 = myPrefs.getInt("top1",0);
+        top1 = stop1;
+    }
 
     @Override
     protected void onPause() {
         super.onPause();
-        SharedPreferences myPrefs = getSharedPreferences("top910",
-                Activity. MODE_PRIVATE);
-        SharedPreferences.Editor editor = myPrefs.edit();
-        if(num < 10)
-            num++;
-        else
+        if(diem > top1)
         {
-            if (diem > top10) {
-                if (diem > top9)
-                {
-                    top10 = top9;
-                    top9 = diem;
-                }
-                else
-                {
-                    top10 = diem;
-                }
-            }
+            SharedPreferences myPrefs = getSharedPreferences("top910",
+                    Activity. MODE_PRIVATE);
+            SharedPreferences.Editor editor = myPrefs.edit();
+            editor.putInt("top1",diem);
+            editor.commit();
         }
-        editor.putInt("top9", top9);
-        editor.putInt("top10",top10);
-        editor.commit();
         song.pause();
     }
 
