@@ -24,37 +24,18 @@ public class MainActivity extends AppCompatActivity {
 
         lnl = (LinearLayout)findViewById(R.id.myscreen);
         lnl.setBackgroundResource(R.drawable.bannermenu);
-        btnDaily = (ImageButton)findViewById(R.id.btDailyTest);
-        btnDaily.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mhDailyTest = new Intent(MainActivity.this, DailyTestActivity.class);
-                mhDailyTest.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(mhDailyTest);
 
-            }
-        });
-        btnTraining = (ImageButton) findViewById(R.id.btTraining);
+        btnTraining = (ImageButton)findViewById(R.id.btTraining);
         btnTraining.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent mhTraining = new Intent(MainActivity.this, TrainingActivity.class);
-                mhTraining.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(mhTraining);
-
-            }
-        });
-        btnRecord = (ImageButton)findViewById(R.id.btRecord);
-        btnRecord.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
-                Intent mhRecord = new Intent(MainActivity.this, HighScoreActivity.class);
-                mhRecord.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                Intent mhG1 = new Intent(MainActivity.this, TrainingActivity.class);
+                mhG1.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 MainActivity.this.finish();
-                startActivity(mhRecord);
-
+                startActivity(mhG1);
             }
         });
+
         btnExit = (ImageButton)findViewById(R.id.btExit);
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override

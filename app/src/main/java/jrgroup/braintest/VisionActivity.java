@@ -149,7 +149,7 @@ public class VisionActivity extends AppGeneral {
     }
     protected void ReadSave()
     {
-        SharedPreferences myPrefs = getSharedPreferences("top910",
+        SharedPreferences myPrefs = getSharedPreferences("top_vision",
                 Activity. MODE_PRIVATE);
         int stop1 = myPrefs.getInt("top1",0);
         top1 = stop1;
@@ -252,7 +252,7 @@ public class VisionActivity extends AppGeneral {
         super.onPause();
         if(diem > top1)
         {
-            SharedPreferences myPrefs = getSharedPreferences("top910",
+            SharedPreferences myPrefs = getSharedPreferences("top_vision",
                     Activity. MODE_PRIVATE);
             SharedPreferences.Editor editor = myPrefs.edit();
             editor.putInt("top1",diem);
