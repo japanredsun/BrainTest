@@ -11,4 +11,6 @@ Thành viên:
 
 1451010163 - Lê Tấn Tài - 1451010163Tai@ou.edu.vn 
 
+Phiên bản Android Studio sử dụng: Android Studio 2.3
+
 Đề tài: BrainTest - Game trí tuệ
